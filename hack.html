@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-color: black;
+  font-family: monospace;
+  font-size: 20px;
+  color: #00FF00;
+  margin: 0;
+  overflow: hidden;
+}
+#hacking {
+  white-space: pre;
+}
+</style>
+</head>
+<body>
+<div id="hacking"></div>
+<script>
+function startHacking() {
+  let interval = setInterval(() => {
+    let binary = '';
+    for (let i = 0; i < 100; i++) {
+      for (let j = 0; j < 50; j++) {
+        binary += Math.round(Math.random()) + ' ';
+      }
+      binary += '\n';
+    }
+    document.getElementById('hacking').innerHTML = binary;
+  }, 50);
+
+  setTimeout(() => {
+    clearInterval(interval);
+    hackPrompt();
+  }, 5000);
+}
+
+function hackPrompt() {
+  let count = 0;
+  function promptUser() {
+    let response = confirm("I can hack your mobile or computer. Yes/No?");
+    if (response) {
+      alert("Thank you!");
+    } else {
+      count++;
+      if (count < 5) {
+        alert("Please");
+        promptUser();
+      } else {
+        alert("You are an idiot!");
+      }
+    }
+  }
+  promptUser();
+}
+
+startHacking();
+</script>
+</body>
+</html>
